@@ -10,7 +10,7 @@ import { useUtils } from '../internal/pickers/hooks/useUtils';
 import FadeTransitionGroup from './PickersFadeTransitionGroup';
 import { DateValidationProps } from '../internal/pickers/date-utils';
 // tslint:disable-next-line no-relative-import-in-test
-import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
+import ArrowDropDownIcon from '../internal/svg-icons/ArrowLeft';
 import ArrowSwitcher, {
   ExportedArrowSwitcherProps,
 } from '../internal/pickers/PickersArrowSwitcher';
@@ -19,6 +19,10 @@ import {
   useNextMonthDisabled,
 } from '../internal/pickers/hooks/date-helpers-hooks';
 import { DatePickerView } from '../internal/pickers/typings/Views';
+
+export interface ComponentsProps {
+  headerDropdownIcon?: React.ReactNode;
+}
 
 export type ExportedCalendarHeaderProps<TDate> = Pick<
   PickersCalendarHeaderProps<TDate>,
@@ -37,6 +41,7 @@ export interface PickersCalendarHeaderProps<TDate>
   openView: DatePickerView;
   views: DatePickerView[];
   currentMonth: TDate;
+  components?: ComponentsProps;
   /**
    * Get aria-label text for switching between views button.
    */
@@ -103,6 +108,7 @@ function PickersCalendarHeader<TDate>(
     onViewChange,
     classes,
     currentMonth: month,
+    components = {},
     disableFuture,
     disablePast,
     getViewSwitchingButtonText = getSwitchingViewAriaText,
@@ -141,6 +147,8 @@ function PickersCalendarHeader<TDate>(
       onViewChange(views[nextIndexToOpen]);
     }
   };
+
+  const { headerDropdownIcon } = components;
 
   return (
     <React.Fragment>
@@ -181,11 +189,13 @@ function PickersCalendarHeader<TDate>(
               className={classes.yearSelectionSwitcher}
               aria-label={getViewSwitchingButtonText(currentView)}
             >
-              <ArrowDropDownIcon
-                className={clsx(classes.switchViewDropdown, {
-                  [classes.switchViewDropdownDown]: currentView === 'year',
-                })}
-              />
+              {headerDropdownIcon || (
+                <ArrowDropDownIcon
+                  className={clsx(classes.switchViewDropdown, {
+                    [classes.switchViewDropdownDown]: currentView === 'year',
+                  })}
+                />
+              )}
             </IconButton>
           )}
         </div>
