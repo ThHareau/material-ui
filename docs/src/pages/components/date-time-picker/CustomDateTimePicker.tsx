@@ -1,6 +1,7 @@
 import * as React from 'react';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import SnoozeIcon from '@material-ui/icons/Snooze';
+import AirplayIcon from '@material-ui/icons/Airplay';
 import TextField from '@material-ui/core/TextField';
 import ClockIcon from '@material-ui/icons/AccessTime';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
@@ -30,6 +31,9 @@ export default function CustomDateTimePicker() {
           minDate={new Date('2018-01-01')}
           leftArrowIcon={<AlarmIcon />}
           rightArrowIcon={<SnoozeIcon />}
+          components={{
+            headerDropdownIcon: <AirplayIcon />,
+          }}
           leftArrowButtonText="Open previous month"
           rightArrowButtonText="Open next month"
           openPickerIcon={<ClockIcon />}

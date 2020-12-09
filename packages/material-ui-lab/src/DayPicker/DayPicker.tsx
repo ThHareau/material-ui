@@ -189,9 +189,6 @@ const DayPicker = React.forwardRef(function DayPicker<
         disablePast={disablePast}
         disableFuture={disableFuture}
         reduceAnimations={reduceAnimations}
-        components={{
-          headerDropdownIcon: <div>Hello</div>,
-        }}
       />
       <FadeTransitionGroup
         reduceAnimations={reduceAnimations}
@@ -265,6 +262,12 @@ const DayPicker = React.forwardRef(function DayPicker<
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  components: PropTypes.shape({
+    headerDropdownIcon: PropTypes.node,
+  }),
   /**
    * @ignore
    */

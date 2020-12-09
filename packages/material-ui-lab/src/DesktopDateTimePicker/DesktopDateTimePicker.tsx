@@ -54,6 +54,12 @@ const DesktopDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerPr
    */
   className: PropTypes.string,
   /**
+   * @ignore
+   */
+  components: PropTypes.shape({
+    headerDropdownIcon: PropTypes.node,
+  }),
+  /**
    * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
    * ```jsx
    * dateAdapter={new AdapterDateFns({ locale: ruLocale })}

@@ -10,7 +10,7 @@ import { useUtils } from '../internal/pickers/hooks/useUtils';
 import FadeTransitionGroup from './PickersFadeTransitionGroup';
 import { DateValidationProps } from '../internal/pickers/date-utils';
 // tslint:disable-next-line no-relative-import-in-test
-import ArrowDropDownIcon from '../internal/svg-icons/ArrowLeft';
+import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import ArrowSwitcher, {
   ExportedArrowSwitcherProps,
 } from '../internal/pickers/PickersArrowSwitcher';
@@ -33,6 +33,7 @@ export type ExportedCalendarHeaderProps<TDate> = Pick<
   | 'leftArrowButtonText'
   | 'rightArrowButtonText'
   | 'getViewSwitchingButtonText'
+  | 'components'
 >;
 
 export interface PickersCalendarHeaderProps<TDate>
@@ -66,6 +67,9 @@ export const styles = (theme: Theme) =>
     },
     yearSelectionSwitcher: {
       marginRight: 'auto',
+    },
+    yearSelectionDropDownIcon: {
+      iconHeight: 24,
     },
     previousMonthButton: {
       marginRight: 24,
@@ -189,13 +193,14 @@ function PickersCalendarHeader<TDate>(
               className={classes.yearSelectionSwitcher}
               aria-label={getViewSwitchingButtonText(currentView)}
             >
-              {headerDropdownIcon || (
-                <ArrowDropDownIcon
-                  className={clsx(classes.switchViewDropdown, {
-                    [classes.switchViewDropdownDown]: currentView === 'year',
-                  })}
-                />
-              )}
+              <span
+                style={{ height: '1.5rem' }}
+                className={clsx(classes.switchViewDropdown, classes.yearSelectionDropDownIcon, {
+                  [classes.switchViewDropdownDown]: currentView === 'year',
+                })}
+              >
+                {headerDropdownIcon || <ArrowDropDownIcon />}
+              </span>
             </IconButton>
           )}
         </div>
