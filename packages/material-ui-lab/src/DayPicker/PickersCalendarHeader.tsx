@@ -194,7 +194,6 @@ function PickersCalendarHeader<TDate>(
               aria-label={getViewSwitchingButtonText(currentView)}
             >
               <span
-                style={{ height: '1.5rem' }}
                 className={clsx(classes.switchViewDropdown, classes.yearSelectionDropDownIcon, {
                   [classes.switchViewDropdownDown]: currentView === 'year',
                 })}
